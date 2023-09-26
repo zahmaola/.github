@@ -1,0 +1,34 @@
+name: Update Organization README
+
+on:
+    repository_dispatch:
+    workflow_dispatch:  
+
+jobs:
+    update-readme:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "18"
+
+            - name: Install dependencies
+              run: npm install axios
+
+            - name: Run script
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: node ./generate-readme.js
+
+            - name: Commit and push
+              run: |
+                  git config user.name "GitHub Actions"
+                  git config user.email "actions@github.com"
+                  git add profile/readme.md
+                  git commit -m "Update organization README"
+                  git push
