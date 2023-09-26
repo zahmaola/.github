@@ -7,7 +7,7 @@ const url = `https://api.github.com/orgs/${orgName}/repos`;
 
 axios.get(url, { headers: { Authorization: `token ${githubToken}` } })
 .then(response => {
-    const repos = response.data.map(repo => `### [${repo.name}](${repo.html_url})\n ${repo.description || 'No description'}`).join('\n');
+    const repos = response.data.map(repo => `### [${repo.name}](${repo.html_url})\n ${repo.description || 'No description'}`).join('\n\n');
     console.log(repos);
     // Read TEMPLATE.md
     const template = fs.readFileSync('./TEMPLATE.md', 'utf8');
