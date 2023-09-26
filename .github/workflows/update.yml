@@ -22,7 +22,7 @@ jobs:
 
             - name: Run script
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.GH_PAT }}
                   ORG_NAME: zahmaola
               run: node ./generate-readme.js
 
