@@ -23,6 +23,7 @@ jobs:
             - name: Run script
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  ORG_NAME: zahmaola
               run: node ./generate-readme.js
 
             - name: Commit and push
